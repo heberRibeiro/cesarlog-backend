@@ -1,0 +1,32 @@
+version: '3.8'
+
+# Defines services
+services:
+
+ # PostgreSQL Database for the application
+ db_postgres:
+  container_name: db_postgres
+  image: postgres
+  restart: always
+  ports:
+   - "5432:5432"
+  volumes:
+   - ./pgdata:/var/lib/postgresql/data
+  env_file:
+   - dev.env
+  environment:
+   - PGDATA=/var/lib/postgresql/data
+
+ # Application's backend
+ backend:
+  image: build-backend
+  build:
+   context: . # The docker file in backend build for provides the docker image
+  container_name: backend
+  env_file:
+   - dev.env  # Environment variables for Spring Boot Application
+  ports:
+   - 8080:8080
+  depends_on:
+   - db_postgres
+  

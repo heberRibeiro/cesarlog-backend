@@ -15,24 +15,45 @@ public class Equipment implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private Integer categoryId;
-	private Integer modelId;
+	private Integer repositoryId;
+	private Integer statusId;
 	private String code;
 	private String tipping;
 	private Integer projectId;
 	private String specification;
 	private Integer employeeId;
-	private Boolean maintenance;
 	private Double latitude;
 	private Double longitude;
 	private Date coordinateUpdate;
-	private Boolean status;
-	private Date stausupdate;
+	private Date stausUpdate;
+	private String detail;
+	private String serie;
 	
 	public Equipment() {
 
 	}
 
+	
+
+	public Equipment(Integer repositoryId, Integer statusId, String code, String tipping, Integer projectId,
+			String specification, Integer employeeId, Double latitude, Double longitude, Date coordinateUpdate,
+			Date stausUpdate, String detail, String serie) {
+		super();
+		this.repositoryId = repositoryId;
+		this.statusId = statusId;
+		this.code = code;
+		this.tipping = tipping;
+		this.projectId = projectId;
+		this.specification = specification;
+		this.employeeId = employeeId;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.coordinateUpdate = coordinateUpdate;
+		this.stausUpdate = stausUpdate;
+		this.detail = detail;
+		this.serie = serie;
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -41,20 +62,20 @@ public class Equipment implements Serializable {
 		this.id = id;
 	}
 
-	public Integer getCategoryId() {
-		return categoryId;
+	public Integer getRepositoryId() {
+		return repositoryId;
 	}
 
-	public void setCategoryId(Integer categoryId) {
-		this.categoryId = categoryId;
+	public void setRepositoryId(Integer repositoryId) {
+		this.repositoryId = repositoryId;
 	}
 
-	public Integer getModelId() {
-		return modelId;
+	public Integer getStatusId() {
+		return statusId;
 	}
 
-	public void setModelId(Integer modelId) {
-		this.modelId = modelId;
+	public void setStatusId(Integer statusId) {
+		this.statusId = statusId;
 	}
 
 	public String getCode() {
@@ -97,14 +118,6 @@ public class Equipment implements Serializable {
 		this.employeeId = employeeId;
 	}
 
-	public Boolean getMaintenance() {
-		return maintenance;
-	}
-
-	public void setMaintenance(Boolean maintenance) {
-		this.maintenance = maintenance;
-	}
-
 	public Double getLatitude() {
 		return latitude;
 	}
@@ -129,20 +142,28 @@ public class Equipment implements Serializable {
 		this.coordinateUpdate = coordinateUpdate;
 	}
 
-	public Boolean getStatus() {
-		return status;
+	public Date getStausUpdate() {
+		return stausUpdate;
 	}
 
-	public void setStatus(Boolean status) {
-		this.status = status;
+	public void setStausUpdate(Date stausUpdate) {
+		this.stausUpdate = stausUpdate;
 	}
 
-	public Date getStausupdate() {
-		return stausupdate;
+	public String getDetail() {
+		return detail;
 	}
 
-	public void setStausupdate(Date stausupdate) {
-		this.stausupdate = stausupdate;
+	public void setDetail(String detail) {
+		this.detail = detail;
+	}
+
+	public String getSerie() {
+		return serie;
+	}
+
+	public void setSerie(String serie) {
+		this.serie = serie;
 	}
 
 	@Override

@@ -27,7 +27,17 @@ public class EquipmentService {
 			return equipment;
 
 		} catch (NoSuchElementException e) {
-			throw new ObjectNotFoundException("Categoria não encaontrada na base de dados.");
+			throw new ObjectNotFoundException("Equipamento não encontrado na base de dados.");
 		}
+	}
+	
+	public Equipment insert(Equipment equipment) {
+		
+		try {
+			return repository.save(equipment);
+		} catch (Exception e) {
+			throw new ObjectNotFoundException("Não foi possivel");
+		}
+		
 	}
 }

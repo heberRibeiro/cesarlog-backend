@@ -33,12 +33,11 @@ public class Equipment implements Serializable {
 
 	}
 
-	
-
 	public Equipment(Integer repositoryId, Integer statusId, String code, String tipping, Integer projectId,
 			String specification, Integer employeeId, Double latitude, Double longitude, Date coordinateUpdate,
 			Date stausUpdate, String detail, String serie) {
 		super();
+		this.employeeId = id;
 		this.repositoryId = repositoryId;
 		this.statusId = statusId;
 		this.code = code;
@@ -190,5 +189,5 @@ public class Equipment implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 }

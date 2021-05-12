@@ -3,7 +3,10 @@ package com.unit.cesarlog.services;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.unit.cesarlog.domain.Equipment;
@@ -32,12 +35,31 @@ public class EquipmentService {
 	}
 	
 	public Equipment insert(Equipment equipment) {
-		
+		return repository.save(equipment);		
+	}
+	
+	public Equipment update(Equipment equipmento, Integer id) {
+
 		try {
-			return repository.save(equipment);
-		} catch (Exception e) {
-			throw new ObjectNotFoundException("Não foi possivel");
+			Equipment obj = repository.getOne(id); // return a reference to the entity
+			obj.setId(equipmento.getId());
+			obj.setLatitude(equipmento.getLatitude());
+			obj.setLongitude(equipmento.getLongitude());
+			
+			return repository.save(obj);
+
+		} catch (EntityNotFoundException e) {
+			throw new ObjectNotFoundException("Equipmento a ser atualizado não encontrado na base de dados.");
 		}
-		
+
+	}
+	
+	public void delete(Integer id) {
+		try {
+			repository.deleteById(id);
+
+		} catch (EmptyResultDataAccessException e) {
+			throw new ObjectNotFoundException("Equipmaneto não encontrado na base de dados.");
+		}
 	}
 }

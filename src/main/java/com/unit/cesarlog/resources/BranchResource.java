@@ -24,7 +24,7 @@ import io.swagger.annotations.ApiOperation;
 @Api(value = "Branch Endpoint", description = "Acesso aos endpoint da entidade Equipmaneto", tags = {"Branch Enpoints"})
 @RestController
 @RequestMapping(value="/branch")
-public class BranchResurce {
+public class BranchResource {
 	
 	@Autowired
 	private BranchService service;

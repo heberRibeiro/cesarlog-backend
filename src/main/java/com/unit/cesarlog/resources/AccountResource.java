@@ -25,7 +25,6 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping(value="/account")
 public class AccountResource {
 	
-
 	@Autowired
 	private AccountService service;
 	

@@ -8,20 +8,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class EquipmentStatus implements Serializable {
+public class EmployeeProject implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String name;
+	private Integer employeeId;
+	private Integer projectId;
 	
-	public EquipmentStatus() {
+	public EmployeeProject() {
 
 	}
 
-	public EquipmentStatus(String name) {
-		this.name = name;
+	public EmployeeProject(Integer employeeId, Integer projectId) {
+		this.employeeId = employeeId;
+		this.projectId = projectId;
 	}
 
 	public Integer getId() {
@@ -32,12 +34,20 @@ public class EquipmentStatus implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public Integer getEmployeeId() {
+		return employeeId;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setEmployeeId(Integer employeeId) {
+		this.employeeId = employeeId;
+	}
+
+	public Integer getProjectId() {
+		return projectId;
+	}
+
+	public void setProjectId(Integer projectId) {
+		this.projectId = projectId;
 	}
 
 	@Override
@@ -56,7 +66,7 @@ public class EquipmentStatus implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		EquipmentStatus other = (EquipmentStatus) obj;
+		EmployeeProject other = (EmployeeProject) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -64,6 +74,5 @@ public class EquipmentStatus implements Serializable {
 			return false;
 		return true;
 	}
-	
 	
 }

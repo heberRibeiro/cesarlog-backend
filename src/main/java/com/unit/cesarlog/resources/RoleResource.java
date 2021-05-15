@@ -21,7 +21,7 @@ import com.unit.cesarlog.services.RoleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@Api(value = "Role", description = "Acesso aos endpoints da entidade Role", tags = {"Role Enpoints"})
+@Api(value = "Role", description = "Acesso aos endpoints da entidade Role", tags = {"Role"})
 @RestController
 @RequestMapping(value="/role")
 public class RoleResource {

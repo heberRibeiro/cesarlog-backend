@@ -21,9 +21,9 @@ import com.unit.cesarlog.services.BranchService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@Api(value = "Equipment Endpoint", description = "Acesso aos endpoint da entidade Equipmaneto", tags = {"Branch Enpoints"})
+@Api(value = "Branch", description = "Acesso aos endpoint da entidade Equipmaneto", tags = {"Branch"})
 @RestController
-@RequestMapping(value="/equipment")
+@RequestMapping(value="/branch")
 public class BranchResource {
 	
 	@Autowired

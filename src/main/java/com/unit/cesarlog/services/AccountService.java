@@ -42,7 +42,7 @@ public class AccountService {
 
 		try {
 			Account obj = repository.getOne(id); // return a reference to the entity
-			obj.setRoleId(account.getRoleId());
+			obj.setRole(account.getRole());
 			obj.setEmail(account.getEmail());
 			
 			return repository.save(obj);

@@ -21,7 +21,7 @@ import com.unit.cesarlog.services.EquipmentTypeService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@Api(value = "Equipment Type", description = "Acesso aos endpoint da entidade Tipo de Equipamento", tags = {"Equipment Type Enpoints"})
+@Api(value = "Equipment Type", description = "Acesso aos endpoint da entidade Tipo de Equipamento", tags = {"Equipment Type"})
 @RestController
 @RequestMapping(value="/equipment-type")
 public class EquipmentTypeResources {

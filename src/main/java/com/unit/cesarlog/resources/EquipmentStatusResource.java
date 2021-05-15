@@ -21,7 +21,7 @@ import com.unit.cesarlog.services.EquipmentStatusService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@Api(value = "Equipment Status", description = "Acesso aos endpoint da entidade Status de Equipamento", tags = {"Equipment Status Enpoints"})
+@Api(value = "Equipment Status", description = "Acesso aos endpoint da entidade Status de Equipamento", tags = {"Equipment Status"})
 @RestController
 @RequestMapping(value="/equipment-status")
 public class EquipmentStatusResource {

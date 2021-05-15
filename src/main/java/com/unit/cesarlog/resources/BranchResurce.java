@@ -15,54 +15,55 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.unit.cesarlog.domain.Equipment;
-import com.unit.cesarlog.services.EquipmentService;
+import com.unit.cesarlog.domain.Branch;
+import com.unit.cesarlog.services.BranchService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@Api(value = "Equipment Endpoint", description = "Acesso aos endpoint da entidade Equipmaneto", tags = {"Equipment Enpoints"})
+@Api(value = "Branch Endpoint", description = "Acesso aos endpoint da entidade Equipmaneto", tags = {"Branch Enpoints"})
 @RestController
-@RequestMapping(value="/equipment")
-public class EquipmentResource {
+@RequestMapping(value="/branch")
+public class BranchResurce {
 	
 	@Autowired
-	private EquipmentService service;
+	private BranchService service;
 	
-	@ApiOperation(value = "Busca todas os Equipamentos")
+	@ApiOperation(value = "Busca todas os Filiais")
 	@GetMapping
-	public ResponseEntity<List<Equipment>> findAll() {
-		List<Equipment> equipment = service.findAll();
-		return ResponseEntity.ok().body(equipment);
+	public ResponseEntity<List<Branch>> findAll() {
+		List<Branch> Branch = service.findAll();
+		return ResponseEntity.ok().body(Branch);
 	}
 	
-	@ApiOperation(value = "Busca um Equipamento pelo ID", notes = "Este endpoint faz a busca de uma Equipmento passando o Id como parâmetro da requisição.")
+	@ApiOperation(value = "Busca um Filial pelo ID", notes = "Este endpoint faz a busca de uma Branch passando o Id como parâmetro da requisição.")
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Equipment> findById(@PathVariable Integer id) {
-		Equipment obj = service.findById(id);
+	public ResponseEntity<Branch> findById(@PathVariable Integer id) {
+		Branch obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	
-	@ApiOperation(value = "Insere uma Equipamento enviando um json no corpo da requisição")
+	@ApiOperation(value = "Insere uma Filial enviando um json no corpo da requisição")
 	@PostMapping
-	public ResponseEntity<Equipment> insert(@RequestBody Equipment equipment) {
-		Equipment obj = service.insert(equipment);
+	public ResponseEntity<Branch> insert(@RequestBody Branch branch) {
+		Branch obj = service.insert(branch);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).body(obj);
 	}
 	
-	@ApiOperation(value = "Atualiza um Equipamento")
+	@ApiOperation(value = "Atualiza uma Filial")
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Equipment> update(@RequestBody Equipment equipment, @PathVariable Integer id) {
-		equipment = service.update(equipment, id);
-		return ResponseEntity.ok().body(equipment);
+	public ResponseEntity<Branch> update(@RequestBody Branch branch, @PathVariable Integer id) {
+		branch = service.update(branch, id);
+		return ResponseEntity.ok().body(branch);
 	}
 	
-	@ApiOperation(value = "Deleta um Equipamento passando o ID como parâmetro da requisição")
+	@ApiOperation(value = "Deleta um Filial passando o ID como parâmetro da requisição")
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Integer id) {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
+
 
 }

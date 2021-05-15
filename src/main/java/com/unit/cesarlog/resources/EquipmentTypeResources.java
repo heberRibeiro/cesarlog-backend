@@ -21,15 +21,15 @@ import com.unit.cesarlog.services.EquipmentTypeService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@Api(value = "Branch Endpoint", description = "Acesso aos endpoint da entidade Tipo de Equipmaneto", tags = {"Branch Enpoints"})
+@Api(value = "Equipment Type Endpoint", description = "Acesso aos endpoint da entidade Tipo de Equipmaneto", tags = {"Equipment Type Enpoints"})
 @RestController
-@RequestMapping(value="/equipmentType-type")
+@RequestMapping(value="/equipment-type")
 public class EquipmentTypeResources {
 	
 	@Autowired
 	private EquipmentTypeService service;
 	
-	@ApiOperation(value = "Busca todas os Tipos de Tipo de Equipamentos")
+	@ApiOperation(value = "Busca todos os Tipos de Equipamentos")
 	@GetMapping
 	public ResponseEntity<List<EquipmentType>> findAll() {
 		List<EquipmentType> equipmentType = service.findAll();

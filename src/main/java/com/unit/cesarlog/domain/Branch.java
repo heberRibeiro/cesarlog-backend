@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Repository implements Serializable {
+public class Branch implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -16,11 +16,11 @@ public class Repository implements Serializable {
 	private Integer id;
 	private String name;
 	
-	public Repository() {
+	public Branch() {
 	
 	}
 
-	public Repository(String name) {
+	public Branch(String name) {
 		this.name = name;
 	}
 
@@ -56,7 +56,7 @@ public class Repository implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Repository other = (Repository) obj;
+		Branch other = (Branch) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

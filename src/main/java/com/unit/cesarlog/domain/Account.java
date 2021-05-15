@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Account implements Serializable {
@@ -14,17 +16,20 @@ public class Account implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private Integer roleId;
 	private Integer employeeId;
 	private String email;
 	private String password;
+	
+	@ManyToOne
+	@JoinColumn(name = "roleId")
+	private Role role;
+
 	
 	public Account() {
 
 	}
 
-	public Account(Integer roleId, Integer employeeId, String email, String password) {
-		this.roleId = roleId;
+	public Account(Integer employeeId, String email, String password) {
 		this.employeeId = employeeId;
 		this.email = email;
 		this.password = password;
@@ -37,13 +42,13 @@ public class Account implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	public Integer getRoleId() {
-		return roleId;
+	
+	public Role getRole() {
+		return role;
 	}
-
-	public void setRoleId(Integer roleId) {
-		this.roleId = roleId;
+	
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
 	public Integer getEmployeeId() {

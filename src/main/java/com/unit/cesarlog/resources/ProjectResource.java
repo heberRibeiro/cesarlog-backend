@@ -15,54 +15,55 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.unit.cesarlog.domain.Branch;
-import com.unit.cesarlog.services.BranchService;
+import com.unit.cesarlog.domain.Project;
+import com.unit.cesarlog.services.ProjectService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@Api(value = "Branch", description = "Acesso aos endpoint da entidade Branch", tags = {"Branch"})
+@Api(value = "Project", description = "Acesso aos endpoint da entidade Project", tags = {"Project"})
 @RestController
-@RequestMapping(value="/branch")
-public class BranchResource {
+@RequestMapping(value="/project")
+public class ProjectResource {
 	
 	@Autowired
-	private BranchService service;
+	private ProjectService service;
 	
 	@ApiOperation(value = "Busca todas os Filiais")
 	@GetMapping
-	public ResponseEntity<List<Branch>> findAll() {
-		List<Branch> Branch = service.findAll();
-		return ResponseEntity.ok().body(Branch);
+	public ResponseEntity<List<Project>> findAll() {
+		List<Project> Project = service.findAll();
+		return ResponseEntity.ok().body(Project);
 	}
 	
-	@ApiOperation(value = "Busca um Filial pelo ID", notes = "Este endpoint faz a busca de uma Branch passando o Id como parâmetro da requisição.")
+	@ApiOperation(value = "Busca um Projeto pelo ID", notes = "Este endpoint faz a busca de uma Project passando o Id como parâmetro da requisição.")
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Branch> findById(@PathVariable Integer id) {
-		Branch obj = service.findById(id);
+	public ResponseEntity<Project> findById(@PathVariable Integer id) {
+		Project obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	
-	@ApiOperation(value = "Insere uma Filial enviando um json no corpo da requisição")
+	@ApiOperation(value = "Insere uma Projeto enviando um json no corpo da requisição")
 	@PostMapping
-	public ResponseEntity<Branch> insert(@RequestBody Branch branch) {
-		Branch obj = service.insert(branch);
+	public ResponseEntity<Project> insert(@RequestBody Project project) {
+		Project obj = service.insert(project);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).body(obj);
 	}
 	
-	@ApiOperation(value = "Atualiza uma Filial")
+	@ApiOperation(value = "Atualiza uma Projeto")
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Branch> update(@RequestBody Branch branch, @PathVariable Integer id) {
-		branch = service.update(branch, id);
-		return ResponseEntity.ok().body(branch);
+	public ResponseEntity<Project> update(@RequestBody Project project, @PathVariable Integer id) {
+		project = service.update(project, id);
+		return ResponseEntity.ok().body(project);
 	}
 	
-	@ApiOperation(value = "Deleta um Filial passando o ID como parâmetro da requisição")
+	@ApiOperation(value = "Deleta um Projeto passando o ID como parâmetro da requisição")
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Integer id) {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 	
+
 }

@@ -20,7 +20,6 @@ public class Equipment implements Serializable {
 	private Integer employeeId;
 	private Integer equipmentStatusId;
 	private Integer equipmentTypeId;
-	private Integer statusId;
 	private String tipping;
 	private String specification;
 	private String serie;
@@ -28,24 +27,21 @@ public class Equipment implements Serializable {
 	private Double latitude;
 	private Double longitude;
 	private Date coordinateUpdate;
-	private Date stausUpdate;
+	private Date statusUpdate;
 
 	
 	public Equipment() {
 
 	}
 
-	
-	
 	public Equipment(Integer branchId, Integer projectId, Integer employeeId, Integer equipmentStatusId,
-			Integer equipmentTypeId, Integer statusId, String tipping, String specification, String serie,
-			String detail, Double latitude, Double longitude, Date coordinateUpdate, Date stausUpdate) {
+			Integer equipmentTypeId, String tipping, String specification, String serie, String detail, Double latitude,
+			Double longitude, Date coordinateUpdate, Date statusUpdate) {
 		this.branchId = branchId;
 		this.projectId = projectId;
 		this.employeeId = employeeId;
 		this.equipmentStatusId = equipmentStatusId;
 		this.equipmentTypeId = equipmentTypeId;
-		this.statusId = statusId;
 		this.tipping = tipping;
 		this.specification = specification;
 		this.serie = serie;
@@ -53,190 +49,120 @@ public class Equipment implements Serializable {
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.coordinateUpdate = coordinateUpdate;
-		this.stausUpdate = stausUpdate;
+		this.statusUpdate = statusUpdate;
 	}
-
-
 
 	public Integer getId() {
 		return id;
 	}
 
-
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-
 
 	public Integer getBranchId() {
 		return branchId;
 	}
 
-
-
 	public void setBranchId(Integer branchId) {
 		this.branchId = branchId;
 	}
-
-
 
 	public Integer getProjectId() {
 		return projectId;
 	}
 
-
-
 	public void setProjectId(Integer projectId) {
 		this.projectId = projectId;
 	}
-
-
 
 	public Integer getEmployeeId() {
 		return employeeId;
 	}
 
-
-
 	public void setEmployeeId(Integer employeeId) {
 		this.employeeId = employeeId;
 	}
-
-
 
 	public Integer getEquipmentStatusId() {
 		return equipmentStatusId;
 	}
 
-
-
 	public void setEquipmentStatusId(Integer equipmentStatusId) {
 		this.equipmentStatusId = equipmentStatusId;
 	}
-
-
 
 	public Integer getEquipmentTypeId() {
 		return equipmentTypeId;
 	}
 
-
-
 	public void setEquipmentTypeId(Integer equipmentTypeId) {
 		this.equipmentTypeId = equipmentTypeId;
 	}
-
-
-
-	public Integer getStatusId() {
-		return statusId;
-	}
-
-
-
-	public void setStatusId(Integer statusId) {
-		this.statusId = statusId;
-	}
-
-
 
 	public String getTipping() {
 		return tipping;
 	}
 
-
-
 	public void setTipping(String tipping) {
 		this.tipping = tipping;
 	}
-
-
 
 	public String getSpecification() {
 		return specification;
 	}
 
-
-
 	public void setSpecification(String specification) {
 		this.specification = specification;
 	}
-
-
 
 	public String getSerie() {
 		return serie;
 	}
 
-
-
 	public void setSerie(String serie) {
 		this.serie = serie;
 	}
-
-
 
 	public String getDetail() {
 		return detail;
 	}
 
-
-
 	public void setDetail(String detail) {
 		this.detail = detail;
 	}
-
-
 
 	public Double getLatitude() {
 		return latitude;
 	}
 
-
-
 	public void setLatitude(Double latitude) {
 		this.latitude = latitude;
 	}
-
-
 
 	public Double getLongitude() {
 		return longitude;
 	}
 
-
-
 	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
-
-
 
 	public Date getCoordinateUpdate() {
 		return coordinateUpdate;
 	}
 
-
-
 	public void setCoordinateUpdate(Date coordinateUpdate) {
 		this.coordinateUpdate = coordinateUpdate;
 	}
-
-
-
-	public Date getStausUpdate() {
-		return stausUpdate;
+	
+	public Date getStatusUpdate() {
+		return statusUpdate;
 	}
 
-
-
-	public void setStausUpdate(Date stausUpdate) {
-		this.stausUpdate = stausUpdate;
+	public void setStatusUpdate(Date statusUpdate) {
+		this.statusUpdate = statusUpdate;
 	}
-
-
 
 	@Override
 	public int hashCode() {
@@ -245,8 +171,6 @@ public class Equipment implements Serializable {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -265,8 +189,6 @@ public class Equipment implements Serializable {
 		return true;
 	}
 
-
-
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -282,8 +204,6 @@ public class Equipment implements Serializable {
 		builder.append(equipmentStatusId);
 		builder.append(", equipmentTypeId=");
 		builder.append(equipmentTypeId);
-		builder.append(", statusId=");
-		builder.append(statusId);
 		builder.append(", tipping=");
 		builder.append(tipping);
 		builder.append(", specification=");
@@ -298,8 +218,8 @@ public class Equipment implements Serializable {
 		builder.append(longitude);
 		builder.append(", coordinateUpdate=");
 		builder.append(coordinateUpdate);
-		builder.append(", stausUpdate=");
-		builder.append(stausUpdate);
+		builder.append(", statusUpdate=");
+		builder.append(statusUpdate);
 		builder.append("]");
 		return builder.toString();
 	}

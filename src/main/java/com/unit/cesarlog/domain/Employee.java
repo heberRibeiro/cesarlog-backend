@@ -18,16 +18,18 @@ public class Employee implements Serializable {
 	private String registration;
 	private String name;
 	private String cpf;
+	private Integer accountId;
 	
 	public Employee() {
 
 	}
 
-	public Employee(String code, String registration, String name, String cpf) {
+	public Employee(String code, String registration, String name, String cpf, Integer accountId) {
 		this.code = code;
 		this.registration = registration;
 		this.name = name;
 		this.cpf = cpf;
+		this.accountId = accountId;
 	}
 
 	public Integer getId() {
@@ -68,6 +70,14 @@ public class Employee implements Serializable {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+
+	public Integer getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(Integer accountId) {
+		this.accountId = accountId;
 	}
 
 	@Override

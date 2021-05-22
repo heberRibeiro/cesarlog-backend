@@ -2,11 +2,16 @@ package com.unit.cesarlog.domain;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Equipment implements Serializable {
@@ -17,7 +22,6 @@ public class Equipment implements Serializable {
 	private Integer id;
 	private Integer branchId;
 	private Integer projectId;
-	private Integer employeeId;
 	private Integer equipmentStatusId;
 	private Integer equipmentTypeId;
 	private String tipping;
@@ -28,18 +32,21 @@ public class Equipment implements Serializable {
 	private Double longitude;
 	private Date coordinateUpdate;
 	private Date statusUpdate;
+		
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "employeeId")
+	private Employee employee;
 
-	
 	public Equipment() {
 
 	}
 
-	public Equipment(Integer branchId, Integer projectId, Integer employeeId, Integer equipmentStatusId,
+	public Equipment(Integer branchId, Integer projectId, Integer equipmentStatusId,
 			Integer equipmentTypeId, String tipping, String specification, String serie, String detail, Double latitude,
 			Double longitude, Date coordinateUpdate, Date statusUpdate) {
 		this.branchId = branchId;
 		this.projectId = projectId;
-		this.employeeId = employeeId;
 		this.equipmentStatusId = equipmentStatusId;
 		this.equipmentTypeId = equipmentTypeId;
 		this.tipping = tipping;
@@ -74,14 +81,6 @@ public class Equipment implements Serializable {
 
 	public void setProjectId(Integer projectId) {
 		this.projectId = projectId;
-	}
-
-	public Integer getEmployeeId() {
-		return employeeId;
-	}
-
-	public void setEmployeeId(Integer employeeId) {
-		this.employeeId = employeeId;
 	}
 
 	public Integer getEquipmentStatusId() {
@@ -163,6 +162,14 @@ public class Equipment implements Serializable {
 	public void setStatusUpdate(Date statusUpdate) {
 		this.statusUpdate = statusUpdate;
 	}
+	
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
 
 	@Override
 	public int hashCode() {
@@ -191,36 +198,18 @@ public class Equipment implements Serializable {
 
 	@Override
 	public String toString() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
 		StringBuilder builder = new StringBuilder();
-		builder.append("Equipment [id=");
-		builder.append(id);
-		builder.append(", branchId=");
-		builder.append(branchId);
-		builder.append(", projectId=");
-		builder.append(projectId);
-		builder.append(", employeeId=");
-		builder.append(employeeId);
-		builder.append(", equipmentStatusId=");
-		builder.append(equipmentStatusId);
-		builder.append(", equipmentTypeId=");
-		builder.append(equipmentTypeId);
-		builder.append(", tipping=");
-		builder.append(tipping);
-		builder.append(", specification=");
+		builder.append("Dados do Equipamento\n");
+		builder.append("Especificação: ");
 		builder.append(specification);
-		builder.append(", serie=");
+		builder.append(", serie: ");
 		builder.append(serie);
-		builder.append(", detail=");
+		builder.append(", detalhe: ");
 		builder.append(detail);
-		builder.append(", latitude=");
-		builder.append(latitude);
-		builder.append(", longitude=");
-		builder.append(longitude);
-		builder.append(", coordinateUpdate=");
-		builder.append(coordinateUpdate);
-		builder.append(", statusUpdate=");
-		builder.append(statusUpdate);
-		builder.append("]");
+		builder.append("\n");
+		builder.append("data da última atualização de status: ");
+		builder.append(sdf.format(statusUpdate));
 		return builder.toString();
 	}
 	

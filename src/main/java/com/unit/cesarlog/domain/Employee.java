@@ -1,11 +1,14 @@
 package com.unit.cesarlog.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Employee implements Serializable {
@@ -19,6 +22,9 @@ public class Employee implements Serializable {
 	private String name;
 	private String cpf;
 	private Integer accountId;
+	
+	@OneToMany(mappedBy = "employee")
+	private List<Equipment> equipment = new ArrayList<>();
 	
 	public Employee() {
 
@@ -79,6 +85,14 @@ public class Employee implements Serializable {
 	public void setAccountId(Integer accountId) {
 		this.accountId = accountId;
 	}
+	
+	public List<Equipment> getEquipment() {
+		return equipment;
+	}
+
+	public void setEquipment(List<Equipment> equipment) {
+		this.equipment = equipment;
+	}
 
 	@Override
 	public int hashCode() {
@@ -104,5 +118,28 @@ public class Employee implements Serializable {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Employee [id=");
+		builder.append(id);
+		builder.append(", code=");
+		builder.append(code);
+		builder.append(", registration=");
+		builder.append(registration);
+		builder.append(", name=");
+		builder.append(name);
+		builder.append(", cpf=");
+		builder.append(cpf);
+		builder.append(", accountId=");
+		builder.append(accountId);
+		builder.append(", equipment=");
+		builder.append(equipment);
+		builder.append("]");
+		return builder.toString();
+	}
+	
+	
 	
 }

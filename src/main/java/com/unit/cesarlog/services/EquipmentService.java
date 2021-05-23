@@ -6,7 +6,6 @@ import java.util.NoSuchElementException;
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.unit.cesarlog.domain.Equipment;
@@ -34,6 +33,10 @@ public class EquipmentService {
 		}
 	}
 	
+	public List<Equipment> findByEmployeeId(Integer employeeId) {
+		return repository.findEquipmentByEmployeeId(employeeId);
+	}
+	
 	public Equipment insert(Equipment equipment) {
 		return repository.save(equipment);		
 	}
@@ -49,17 +52,17 @@ public class EquipmentService {
 			return repository.save(obj);
 
 		} catch (EntityNotFoundException e) {
-			throw new ObjectNotFoundException("Equipmento a ser atualizado não encontrado na base de dados.");
+			throw new ObjectNotFoundException("Equipamento a ser atualizado não encontrado na base de dados.");
 		}
 
 	}
 	
-	public void delete(Integer id) {
-		try {
-			repository.deleteById(id);
-
-		} catch (EmptyResultDataAccessException e) {
-			throw new ObjectNotFoundException("Equipmaneto não encontrado na base de dados.");
-		}
-	}
+//	public void delete(Integer id) {
+//		try {
+//			repository.deleteById(id);
+//
+//		} catch (EmptyResultDataAccessException e) {
+//			throw new ObjectNotFoundException("Equipmaneto não encontrado na base de dados.");
+//		}
+//	}
 }

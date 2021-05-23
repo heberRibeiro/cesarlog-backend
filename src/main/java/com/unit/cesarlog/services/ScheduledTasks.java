@@ -28,7 +28,7 @@ public class ScheduledTasks {
 	@Autowired
 	private EmailService emailService;
 
-	@Scheduled(fixedRate = 60000) // miliseconds
+	@Scheduled(fixedRate = 300000) // miliseconds
 	public void reportCurrentTime() {
 
 		List<Employee> employees = employeeService.findAll();

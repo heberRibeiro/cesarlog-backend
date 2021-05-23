@@ -28,9 +28,7 @@ public class ScheduledTasks {
 	@Autowired
 	private EmailService emailService;
 
-	// 1 hora = 3600 seg
-	// 24 horas = 86400 seg
-	@Scheduled(fixedRate = 10000) // miliseconds
+	@Scheduled(fixedRate = 60000) // miliseconds
 	public void reportCurrentTime() {
 
 		List<Employee> employees = employeeService.findAll();
@@ -56,8 +54,8 @@ public class ScheduledTasks {
 			}
 
 			employee.setEquipment(equipmentsFiltered);
-//			emailService.sendAlertEmail(employee);
 			emailService.sendAlertHtmlEmail(employee);
+//			emailService.sendAlertEmail(employee);
 
 		}
 

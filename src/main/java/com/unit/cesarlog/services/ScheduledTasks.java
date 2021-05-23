@@ -56,7 +56,8 @@ public class ScheduledTasks {
 			}
 
 			employee.setEquipment(equipmentsFiltered);
-			emailService.sendAlertEmail(employee);
+//			emailService.sendAlertEmail(employee);
+			emailService.sendAlertHtmlEmail(employee);
 
 		}
 

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title th:remove="all">Alert Email</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div>
+<h3>Olá, <span th:text="${employee.name}"></span>, essa é uma mensagem  padrão de alerta de alocação de equipamento</h3>
+<h1>
+Equipamentos alocados:
+</h1>
+<table border="1">
+<tr>
+<th>Especificação</th>
+<th>Série</th>
+<th>Detalhe</th>
+<th>Data da última atualização de status</th>
+</tr>
+<tr th:each="equipment : ${employee.equipment}">
+<td th:text="${equipment.specification}">especificação</td>
+<td th:text="${equipment.serie}">serie</td>
+<td th:text="${equipment.detail}">detalhe</td>
+<td th:text="${equipment.statusUpdate}">data</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

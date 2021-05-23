@@ -2,11 +2,16 @@ package com.unit.cesarlog.domain;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Equipment implements Serializable {
@@ -15,44 +20,45 @@ public class Equipment implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private Integer repositoryId;
-	private Integer statusId;
-	private String code;
-	private String tipping;
+	private Integer branchId;
 	private Integer projectId;
+	private Integer equipmentStatusId;
+	private Integer equipmentTypeId;
+	private String tipping;
 	private String specification;
-	private Integer employeeId;
+	private String serie;
+	private String detail;
 	private Double latitude;
 	private Double longitude;
 	private Date coordinateUpdate;
-	private Date stausUpdate;
-	private String detail;
-	private String serie;
-	
+	private Date statusUpdate;
+		
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "employeeId")
+	private Employee employee;
+
 	public Equipment() {
 
 	}
 
-	public Equipment(Integer repositoryId, Integer statusId, String code, String tipping, Integer projectId,
-			String specification, Integer employeeId, Double latitude, Double longitude, Date coordinateUpdate,
-			Date stausUpdate, String detail, String serie) {
-		super();
-		this.employeeId = id;
-		this.repositoryId = repositoryId;
-		this.statusId = statusId;
-		this.code = code;
-		this.tipping = tipping;
+	public Equipment(Integer branchId, Integer projectId, Integer equipmentStatusId,
+			Integer equipmentTypeId, String tipping, String specification, String serie, String detail, Double latitude,
+			Double longitude, Date coordinateUpdate, Date statusUpdate) {
+		this.branchId = branchId;
 		this.projectId = projectId;
+		this.equipmentStatusId = equipmentStatusId;
+		this.equipmentTypeId = equipmentTypeId;
+		this.tipping = tipping;
 		this.specification = specification;
-		this.employeeId = employeeId;
+		this.serie = serie;
+		this.detail = detail;
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.coordinateUpdate = coordinateUpdate;
-		this.stausUpdate = stausUpdate;
-		this.detail = detail;
-		this.serie = serie;
+		this.statusUpdate = statusUpdate;
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -61,36 +67,12 @@ public class Equipment implements Serializable {
 		this.id = id;
 	}
 
-	public Integer getRepositoryId() {
-		return repositoryId;
+	public Integer getBranchId() {
+		return branchId;
 	}
 
-	public void setRepositoryId(Integer repositoryId) {
-		this.repositoryId = repositoryId;
-	}
-
-	public Integer getStatusId() {
-		return statusId;
-	}
-
-	public void setStatusId(Integer statusId) {
-		this.statusId = statusId;
-	}
-
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
-
-	public String getTipping() {
-		return tipping;
-	}
-
-	public void setTipping(String tipping) {
-		this.tipping = tipping;
+	public void setBranchId(Integer branchId) {
+		this.branchId = branchId;
 	}
 
 	public Integer getProjectId() {
@@ -101,6 +83,30 @@ public class Equipment implements Serializable {
 		this.projectId = projectId;
 	}
 
+	public Integer getEquipmentStatusId() {
+		return equipmentStatusId;
+	}
+
+	public void setEquipmentStatusId(Integer equipmentStatusId) {
+		this.equipmentStatusId = equipmentStatusId;
+	}
+
+	public Integer getEquipmentTypeId() {
+		return equipmentTypeId;
+	}
+
+	public void setEquipmentTypeId(Integer equipmentTypeId) {
+		this.equipmentTypeId = equipmentTypeId;
+	}
+
+	public String getTipping() {
+		return tipping;
+	}
+
+	public void setTipping(String tipping) {
+		this.tipping = tipping;
+	}
+
 	public String getSpecification() {
 		return specification;
 	}
@@ -109,12 +115,20 @@ public class Equipment implements Serializable {
 		this.specification = specification;
 	}
 
-	public Integer getEmployeeId() {
-		return employeeId;
+	public String getSerie() {
+		return serie;
 	}
 
-	public void setEmployeeId(Integer employeeId) {
-		this.employeeId = employeeId;
+	public void setSerie(String serie) {
+		this.serie = serie;
+	}
+
+	public String getDetail() {
+		return detail;
+	}
+
+	public void setDetail(String detail) {
+		this.detail = detail;
 	}
 
 	public Double getLatitude() {
@@ -140,29 +154,21 @@ public class Equipment implements Serializable {
 	public void setCoordinateUpdate(Date coordinateUpdate) {
 		this.coordinateUpdate = coordinateUpdate;
 	}
-
-	public Date getStausUpdate() {
-		return stausUpdate;
+	
+	public Date getStatusUpdate() {
+		return statusUpdate;
 	}
 
-	public void setStausUpdate(Date stausUpdate) {
-		this.stausUpdate = stausUpdate;
+	public void setStatusUpdate(Date statusUpdate) {
+		this.statusUpdate = statusUpdate;
+	}
+	
+	public Employee getEmployee() {
+		return employee;
 	}
 
-	public String getDetail() {
-		return detail;
-	}
-
-	public void setDetail(String detail) {
-		this.detail = detail;
-	}
-
-	public String getSerie() {
-		return serie;
-	}
-
-	public void setSerie(String serie) {
-		this.serie = serie;
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 
 	@Override
@@ -190,4 +196,21 @@ public class Equipment implements Serializable {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+		StringBuilder builder = new StringBuilder();
+		builder.append("Dados do Equipamento\n");
+		builder.append("Especificação: ");
+		builder.append(specification);
+		builder.append(", serie: ");
+		builder.append(serie);
+		builder.append(", detalhe: ");
+		builder.append(detail);
+		builder.append("\n");
+		builder.append("data da última atualização de status: ");
+		builder.append(sdf.format(statusUpdate));
+		return builder.toString();
+	}
+	
 }

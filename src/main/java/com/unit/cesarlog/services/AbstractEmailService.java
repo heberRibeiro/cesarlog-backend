@@ -20,6 +20,7 @@ import com.unit.cesarlog.domain.Equipment;
 
 public abstract class AbstractEmailService implements EmailService {
 	
+//	default.sender=${MAIL_USERNAME}
 	@Value("${default.sender}")
 	private String sender;
 		

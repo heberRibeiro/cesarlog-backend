@@ -33,10 +33,26 @@ public class EquipmentService {
 		}
 	}
 	
+	public List<Equipment> findEquipmentByBranchId(Integer branchId) {
+		return repository.findEquipmentByEmployeeId(branchId);
+	}
+	
+	public List<Equipment> findEquipmentByProjectId(Integer projectId) {
+		return repository.findEquipmentByEmployeeId(projectId);
+	}
+	
 	public List<Equipment> findByEmployeeId(Integer employeeId) {
 		return repository.findEquipmentByEmployeeId(employeeId);
 	}
 	
+	public List<Equipment> findByBranchId(Integer branchId) {
+		return repository.findEquipmentByBranchId(branchId);
+	}
+	
+	public List<Equipment> findByBranchIdOrProjectIdEmployeeId(Integer branchId, Integer projectId) {
+		return repository.findEquipmentByBranchIdOrProjectIdEmployeeId(branchId, projectId);
+	}
+		
 	public Equipment insert(Equipment equipment) {
 		return repository.save(equipment);		
 	}

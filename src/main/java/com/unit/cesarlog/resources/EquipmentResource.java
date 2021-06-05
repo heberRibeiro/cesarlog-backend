@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -39,6 +40,22 @@ public class EquipmentResource {
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Equipment> findById(@PathVariable Integer id) {
 		Equipment obj = service.findById(id);
+		return ResponseEntity.ok().body(obj);
+	}
+	
+	@ApiOperation(value = "Busca um Equipamento pelo ID do Colaborador", notes = "Este endpoint faz a busca de uma Equipmento passando o Id do Colaborador como parâmetro da requisição.")
+	@GetMapping(value = "/employee")
+	public ResponseEntity<List<Equipment>> findByEmployeeId(@RequestParam Integer employeeId) {
+		List<Equipment> obj = service.findByEmployeeId(employeeId);
+		return ResponseEntity.ok().body(obj);
+	}
+	
+	@ApiOperation(value = "Busca um Equipamento pelo ID do Colaborador", notes = "Este endpoint faz a busca de uma Equipmento passando o Id do Colaborador como parâmetro da requisição.")
+	@GetMapping(value = "/filter")
+	public ResponseEntity<List<Equipment>> findByBranchIdOrProjectIdEmployeeId(@RequestParam(required = false) Integer branchId, 
+			@RequestParam(required = false) Integer projectId) {
+		
+		List<Equipment> obj = service.findByBranchIdOrProjectIdEmployeeId(branchId, projectId);
 		return ResponseEntity.ok().body(obj);
 	}
 	
